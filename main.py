@@ -6,15 +6,13 @@ from sms.logger import txt_logger
 
 
 
-MEM_MAP_CSV_PATH = path.join( path.abspath(path.dirname(__file__)), 'MEM_MAP.csv')
-OUTPUT_FILE_PATH = path.join( path.abspath(path.dirname(__file__)), 'OUTPUT.sv')
+MEM_MAP_CSV_PATH = path.join(path.abspath(path.dirname(__file__)), 'MEM_MAP.csv')
+OUTPUT_FILE_PATH = path.join(path.abspath(path.dirname(__file__)), 'OUTPUT.sv')
 
 REG_OFFSET_HEADER = 'Register Offset'
 REG_NAME_HEADER   = 'Name'
 
 
-
-print('Memory map CSV path:  ', MEM_MAP_CSV_PATH) 
 
 
 def get_row_dl():
@@ -91,6 +89,8 @@ def output_hdl_line_l(hdl_line_l):
     subprocess.call(cmd, shell = True)
         
          
+         
+print('Memory map CSV path:  ', MEM_MAP_CSV_PATH) 
 
 print('Getting row_dl from CSV...')
 row_dl = get_row_dl()
@@ -108,12 +108,6 @@ hdl_line_l = get_hdl_line_l(offset_name_dl, longest_name_len)
 
 print('Outputting hdl_line_l...')
 output_hdl_line_l(hdl_line_l)
-
-
-
-
-
-
 
 
 print('done')
