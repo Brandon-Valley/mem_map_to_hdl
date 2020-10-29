@@ -70,7 +70,10 @@ def get_hdl_line_l(offset_name_dl, longest_name_len):
         # add spaces to the end of all but the longest name so all the offsets are aligned
         name = name + (longest_name_len - len(name)) * ' '    
         
+        # EDIT THIS LINE
+        ######################################################################################################################################
         hdl_line = "`define ADDR__UART__{} = 32'h{}".format(name, offset)
+        ######################################################################################################################################
         
         hdl_line_l.append(hdl_line)
         
