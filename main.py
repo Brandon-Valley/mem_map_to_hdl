@@ -54,14 +54,25 @@ def get_longest_name_len(offset_name_dl):
     return longest_name_len
     
 
+def get_hdl_line_l(offset_name_dl, longest_name_len):
+    hdl_line_l = []
     
-#     print('`define ')
+    for offset_name_d in offset_name_dl:
+        offset = offset_name_d['offset']
+        name   = offset_name_d['name']
+        
+        # add spaces to the end of all but the longest name so all the offsets are aligned
+        name = name + (longest_name_len - len(name)) * ' '    
+        
+        hdl_line = "`define ADDR__UART__{} = 32'h{}".format(name, offset)
+        
+        hdl_line_l.append(hdl_line)
+        
+    return hdl_line_l
+    
+        
+        
 
-    converted_str = '`define ADDR__CUR_UART__{} '
-    
-    
-for converted_str in converted_str_l:
-    print('converted_str: ', converted_str)
 
 print('Getting offset_name_dl...')
 offset_name_dl = get_offset_name_dl()
@@ -71,7 +82,11 @@ longest_name_len = get_longest_name_len(offset_name_dl)
 
 print(longest_name_len)
 
+print('Getting hdl_line_l...')
+hdl_line_l = get_hdl_line_l(offset_name_dl, longest_name_len)
 
+for hdl_line in hdl_line_l:
+    print(hdl_line)
 
 
 
