@@ -19,7 +19,7 @@ print('Memory map CSV path:  ', MEM_MAP_CSV_PATH)
 
 def get_row_dl():
     row_dl = logger.readCSV(MEM_MAP_CSV_PATH)
-    print(row_dl)
+#     print(row_dl) #``````````````````````````````````````````````````````````````````````````````````````
     
     if row_dl == []:
         raise Exception("ERROR:  " + MEM_MAP_CSV_PATH + " is an empty spreadsheet, copy-paste the memory map you would like to use into this file")
@@ -36,11 +36,11 @@ def get_offset_name_dl(row_dl):
         
         # format reg_offset_str
         reg_offset_str = og_reg_offset_str.replace('0x', '')
-        print('reg_offset_str: ', reg_offset_str)
+#         print('reg_offset_str: ', reg_offset_str) #`````````````````````````````````````````````````````
         
         # format reg_name_str
         reg_name_str = og_reg_name_str.replace(' ', '_').upper()
-        print('reg_name_str: ', reg_name_str)
+#         print('reg_name_str: ', reg_name_str) #````````````````````````````````````````````````````````
         
         offset_name_dl.append({'offset' : reg_offset_str,
                                'name'   : reg_name_str})
@@ -78,8 +78,9 @@ def get_hdl_line_l(offset_name_dl, longest_name_len):
     
         
 def output_hdl_line_l(hdl_line_l):
-    for hdl_line in hdl_line_l:
-        print(hdl_line)    
+#     #``````````````````````````````````````````````````````````````````````````````````````````````````````
+#     for hdl_line in hdl_line_l:
+#         print(hdl_line)    
         
     txt_logger.write(hdl_line_l, OUTPUT_FILE_PATH)
     
@@ -97,7 +98,7 @@ offset_name_dl = get_offset_name_dl(row_dl)
 print('Getting longest_name_len...')
 longest_name_len = get_longest_name_len(offset_name_dl)
 
-print(longest_name_len)
+# print(longest_name_len) #`````````````````````````````````````````````````````````````````````````````````
 
 print('Getting hdl_line_l...')
 hdl_line_l = get_hdl_line_l(offset_name_dl, longest_name_len)
