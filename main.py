@@ -76,7 +76,7 @@ def get_hdl_line_l(offset_name_dl, longest_name_len):
         
         # EDIT THIS LINE
         ######################################################################################################
-        hdl_line = "`define ADDR__UART__{} = 32'h{}".format(name, offset)
+        hdl_line = "`define ADDR__UART__{} `ADDR__CUR_UART + 32'h{}".format(name, offset)
         ######################################################################################################
         
         hdl_line_l.append(hdl_line)
