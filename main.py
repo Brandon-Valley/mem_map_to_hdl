@@ -43,7 +43,7 @@ def get_offset_name_dl(row_dl):
 #         print('reg_offset_str: ', reg_offset_str) #`````````````````````````````````````````````````````````
         
         # format reg_name_str
-        reg_name_str = og_reg_name_str.replace(' ', '_').upper()
+        reg_name_str = og_reg_name_str.replace(' ', '_').replace('-', '_').upper()
 #         print('reg_name_str: ', reg_name_str) #`````````````````````````````````````````````````````````````
         
         offset_name_dl.append({'offset' : reg_offset_str,
