@@ -7,17 +7,23 @@ from sms.logger import txt_logger
 
 
 MEM_MAP_CSV_PATH = path.join(path.abspath(path.dirname(__file__)), 'MEM_MAP.csv')
-OUTPUT_FILE_PATH = path.join(path.abspath(path.dirname(__file__)), 'OUTPUT.sv')
 
+# Edit the extension for proper text highlighting in VS_CODE
+##############################################################################################################
+OUTPUT_FILE_PATH = path.join(path.abspath(path.dirname(__file__)), 'OUTPUT.sv')  
+##############################################################################################################
+
+# Edit to match column headers in MEM_MAP_CSV_PATH
+##############################################################################################################
 REG_OFFSET_HEADER = 'Register Offset'
 REG_NAME_HEADER   = 'Name'
-
+##############################################################################################################
 
 
 
 def get_row_dl():
     row_dl = logger.readCSV(MEM_MAP_CSV_PATH)
-#     print(row_dl) #``````````````````````````````````````````````````````````````````````````````````````
+#     print(row_dl) #`````````````````````````````````````````````````````````````````````````````````````````
     
     if row_dl == []:
         raise Exception("ERROR:  " + MEM_MAP_CSV_PATH + " is an empty spreadsheet, copy-paste the memory map you would like to use into this file")
@@ -34,11 +40,11 @@ def get_offset_name_dl(row_dl):
         
         # format reg_offset_str
         reg_offset_str = og_reg_offset_str.replace('0x', '')
-#         print('reg_offset_str: ', reg_offset_str) #`````````````````````````````````````````````````````
+#         print('reg_offset_str: ', reg_offset_str) #`````````````````````````````````````````````````````````
         
         # format reg_name_str
         reg_name_str = og_reg_name_str.replace(' ', '_').upper()
-#         print('reg_name_str: ', reg_name_str) #````````````````````````````````````````````````````````
+#         print('reg_name_str: ', reg_name_str) #`````````````````````````````````````````````````````````````
         
         offset_name_dl.append({'offset' : reg_offset_str,
                                'name'   : reg_name_str})
@@ -69,9 +75,9 @@ def get_hdl_line_l(offset_name_dl, longest_name_len):
         name = name + (longest_name_len - len(name)) * ' '    
         
         # EDIT THIS LINE
-        ######################################################################################################################################
+        ######################################################################################################
         hdl_line = "`define ADDR__UART__{} = 32'h{}".format(name, offset)
-        ######################################################################################################################################
+        ######################################################################################################
         
         hdl_line_l.append(hdl_line)
         
@@ -79,10 +85,6 @@ def get_hdl_line_l(offset_name_dl, longest_name_len):
     
         
 def output_hdl_line_l(hdl_line_l):
-#     #``````````````````````````````````````````````````````````````````````````````````````````````````````
-#     for hdl_line in hdl_line_l:
-#         print(hdl_line)    
-        
     txt_logger.write(hdl_line_l, OUTPUT_FILE_PATH)
     
     cmd = 'code ' + OUTPUT_FILE_PATH
@@ -101,10 +103,14 @@ offset_name_dl = get_offset_name_dl(row_dl)
 print('Getting longest_name_len...')
 longest_name_len = get_longest_name_len(offset_name_dl)
 
-# print(longest_name_len) #`````````````````````````````````````````````````````````````````````````````````
+# print(longest_name_len) #```````````````````````````````````````````````````````````````````````````````````
 
 print('Getting hdl_line_l...')
 hdl_line_l = get_hdl_line_l(offset_name_dl, longest_name_len)
+
+# #```````````````````````````````````````````````````````````````````````````````````````````````````````````
+# for hdl_line in hdl_line_l:
+#     print(hdl_line) 
 
 print('Outputting hdl_line_l...')
 output_hdl_line_l(hdl_line_l)
