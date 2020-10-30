@@ -21,5 +21,8 @@ Tool for easily converting a .csv memory map to hdl declarations
 2. Configure [main.py](main.py)  
    1. Set `REG_OFFSET_HEADER` = the name of your register offset column header in **MEM_MAP.csv**
    2. Set `REG_NAME_HEADER` = the name of your register name column header in **MEM_MAP.csv**
-   3. Edit the `hdl_line =` line in `get_hdl_line_l()` to match your desired formatting.
+   3. Set `REG_NAME_HEADER` = the name of your register name column header in **MEM_MAP.csv**
+   4. Edit `REG_NAME_REPLACE_D` to include any additional strings that should be replaced in the register names
+        * The string on the left will be replaced with the string on the right
+   5. Edit the `hdl_line =` line in `get_hdl_line_l()` to match your desired formatting.
 3. Run [main.py](main.py) - The output will open in **Visual Studio Code**

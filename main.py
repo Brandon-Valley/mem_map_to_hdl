@@ -19,6 +19,27 @@ REG_OFFSET_HEADER = 'Register Offset'
 REG_NAME_HEADER   = 'Name'
 ##############################################################################################################
 
+# Edit to include any additional strings that should be replaced in the register names
+# All characters should be upper case when this is used
+##############################################################################################################
+REG_NAME_REPLACE_D = {' '         : '_',
+                      '-'         : '_',
+                      ':'         : '_',
+                      '('         : '',
+                      ')'         : '',
+                      'REGISTER'  : 'REG',
+                      'ADDRESS'   : 'ADDR',
+                      'MESSAGE'   : 'MSG',
+                      'BUFFER'    : 'BUFF',
+                      'NUMBER'    : 'NUM',
+                      'CURRENT'   : 'CUR',
+                      'THRESHOLD' : 'THRESH',
+                      'VERSION'   : 'VER',
+                      'LENGTH'    : 'LEN',
+                      'FREQUENCY' : 'FREQ'}
+##############################################################################################################
+
+
 
 
 def get_row_dl():
@@ -43,7 +64,11 @@ def get_offset_name_dl(row_dl):
 #         print('reg_offset_str: ', reg_offset_str) #`````````````````````````````````````````````````````````
         
         # format reg_name_str
-        reg_name_str = og_reg_name_str.replace(' ', '_').replace('-', '_').upper()
+        reg_name_str = og_reg_name_str.upper()
+        
+        for str_to_replace, str_to_replace_it_with in REG_NAME_REPLACE_D.items():
+            reg_name_str = reg_name_str.replace(str_to_replace, str_to_replace_it_with)
+        
 #         print('reg_name_str: ', reg_name_str) #`````````````````````````````````````````````````````````````
         
         offset_name_dl.append({'offset' : reg_offset_str,
@@ -76,7 +101,7 @@ def get_hdl_line_l(offset_name_dl, longest_name_len):
         
         # EDIT THIS LINE
         ######################################################################################################
-        hdl_line = "`define ADDR__UART__{} `ADDR__CUR_UART + 32'h{}".format(name, offset)
+        hdl_line = "`define ADDR__CUR_UART__{} `ADDR__CUR_UART + 32'h{}".format(name, offset)
         ######################################################################################################
         
         hdl_line_l.append(hdl_line)
