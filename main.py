@@ -61,7 +61,14 @@ def get_offset_name_dl(row_dl):
         
         # format reg_offset_str
         reg_offset_str = og_reg_offset_str.replace('0x', '')
-#         print('reg_offset_str: ', reg_offset_str) #`````````````````````````````````````````````````````````
+        
+        # trim trailing 0's
+        for char_num, char in enumerate(reg_offset_str):
+            if char != '0' or char_num == len(reg_offset_str) - 1:
+                reg_offset_str = reg_offset_str[char_num:]
+                break
+        
+        print('reg_offset_str: ', reg_offset_str) #`````````````````````````````````````````````````````````
         
         # format reg_name_str
         reg_name_str = og_reg_name_str.upper()
@@ -101,7 +108,8 @@ def get_hdl_line_l(offset_name_dl, longest_name_len):
         
         # EDIT THIS LINE
         ######################################################################################################
-        hdl_line = "`define ADDR__CUR_UART__{} `ADDR__CUR_UART + 32'h{}".format(name, offset)
+#         hdl_line = "`define ADDR__CUR_UART__{} `ADDR__CUR_UART + 32'h{}".format(name, offset)
+        hdl_line = "`define ADDR__GPR__{} `ADDR__CUR_UART + 32'h{}".format(name, offset)
         ######################################################################################################
         
         hdl_line_l.append(hdl_line)
