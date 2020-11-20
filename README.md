@@ -26,3 +26,33 @@ Tool for easily converting a .csv memory map to hdl declarations
         * The string on the left will be replaced with the string on the right
    5. Edit the `hdl_line =` line in `get_hdl_line_l()` to match your desired formatting.
 3. Run [main.py](main.py) - The output will open in **Visual Studio Code**
+
+## Example
+
+---
+
+Input: `MEM_MAP.csv`
+
+Register Offset | Name
+----------------|------
+0x000           | Module ID
+0x004           | Module Version
+0x000           | Module ID
+0x004           | Version Number
+0x008           | Clock Frequency
+0x00C           | Status Register
+0x018           | Interrupt Enable Register
+0x080           | Safety Check Register
+
+Output: `OUTPUT.sv`
+
+```systemverilog
+`define ADDR__TIMER__MODULE_ID            `ADDR__TIMER + 32'h0
+`define ADDR__TIMER__MODULE_VER           `ADDR__TIMER + 32'h4
+`define ADDR__TIMER__MODULE_ID            `ADDR__TIMER + 32'h0
+`define ADDR__TIMER__VER_NUM              `ADDR__TIMER + 32'h4
+`define ADDR__TIMER__CLOCK_FREQ           `ADDR__TIMER + 32'h8
+`define ADDR__TIMER__STATUS_REG           `ADDR__TIMER + 32'hC
+`define ADDR__TIMER__INTERRUPT_ENABLE_REG `ADDR__TIMER + 32'h18
+`define ADDR__TIMER__SAFETY_CHECK         `ADDR__TIMER + 32'h80
+```
