@@ -1,5 +1,9 @@
 # mem_map_to_hdl
 
+This repository uses the [Semantic Versioning Scheme](https://semver.org/).
+
+For release information, please see the [CHANGELOG](CHANGELOG.md).
+
 ## Required Software
 
 * Python 3.7+
