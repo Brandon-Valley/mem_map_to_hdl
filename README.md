@@ -36,8 +36,6 @@ Input: `MEM_MAP.csv`
 Register Offset | Name
 ----------------|------
 0x000           | Module ID
-0x004           | Module Version
-0x000           | Module ID
 0x004           | Version Number
 0x008           | Clock Frequency
 0x00C           | Status Register
@@ -47,8 +45,6 @@ Register Offset | Name
 Output: `OUTPUT.sv`
 
 ```systemverilog
-`define ADDR__TIMER__MODULE_ID            `ADDR__TIMER + 32'h0
-`define ADDR__TIMER__MODULE_VER           `ADDR__TIMER + 32'h4
 `define ADDR__TIMER__MODULE_ID            `ADDR__TIMER + 32'h0
 `define ADDR__TIMER__VER_NUM              `ADDR__TIMER + 32'h4
 `define ADDR__TIMER__CLOCK_FREQ           `ADDR__TIMER + 32'h8
